@@ -66,12 +66,12 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "ARMCC")
     set(CMAKE_ASM_COMPILER_AR ${ARMCC_PATH}/armar)
 
 
-    set(c_flags --c99 --cpu Cortex-M4.fp.sp -O3 --apcs=interwork --split_sections)
-    set(asm_flags --cpu Cortex-M4.fp.sp --apcs=interwork -I ${KEIL_PATH}/ARM/RV31/INC --pd "__UVISION_VERSION SETA 534")
+    set(C_CXX_COMPILE_OPTIONS --c99 --cpu Cortex-M4.fp.sp -O3 --apcs=interwork --split_sections)
+    set(ASM_COMPILE_OPTIONS --cpu Cortex-M4.fp.sp --apcs=interwork -I ${KEIL_PATH}/ARM/RV31/INC --pd "__UVISION_VERSION SETA 534")
 
     add_compile_options(
-            "$<$<COMPILE_LANGUAGE:C>:${c_flags}>"
-            "$<$<COMPILE_LANGUAGE:ASM>:${asm_flags}>"
+            "$<$<COMPILE_LANGUAGE:C>:${C_CXX_COMPILE_OPTIONS}>"
+            "$<$<COMPILE_LANGUAGE:ASM>:${ASM_COMPILE_OPTIONS}>"
     )
 
     include_directories(${ARMCC_PATH}/../include)
@@ -114,7 +114,7 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "ARMClang")
     set(CMAKE_CXX_COMPILER_AR ${ARMCLANG_PATH}/armar)
     set(CMAKE_ASM_COMPILER_AR ${ARMCLANG_PATH}/armar)
 
-    set(c_flags -xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c
+    set(C_CXX_COMPILE_OPTIONS -xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c
             -fno-rtti -funsigned-char -fshort-enums -fshort-wchar
             -gdwarf-3 -O1 -ffunction-sections
             -Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes
@@ -123,11 +123,11 @@ if ("${CMAKE_C_COMPILER_ID}" STREQUAL "ARMClang")
             -Wno-documentation -Wno-license-management -Wno-parentheses-equality
             )
 
-    set(asm_flags --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto -c)
+    set(ASM_COMPILE_OPTIONS --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -masm=auto -c)
 
     add_compile_options(
-            "$<$<COMPILE_LANGUAGE:C>:${c_flags}>"
-            "$<$<COMPILE_LANGUAGE:ASM>:${asm_flags}>"
+            "$<$<COMPILE_LANGUAGE:C>:${C_CXX_COMPILE_OPTIONS}>"
+            "$<$<COMPILE_LANGUAGE:ASM>:${ASM_COMPILE_OPTIONS}>"
     )
 
     include_directories(${ARMCLANG_PATH}/../include)
