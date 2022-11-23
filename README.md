@@ -1,16 +1,16 @@
-# STM32-CMake
+## STM32-CMake
   Building STM32F4 firmware with cmake (armcc/armclang)
   使用CMake构建STM32F4系列固件
 
 
 
-# Compile & Link
+## Compile & Link
   编译与链接参数建议基于Keil工程选项修改
 
-# ARMCC & ARMClang
+## ARMCC & ARMClang
   本仓库参考文件使用Keil内置编译器，也可自定义编译器路径，若无Keil需要适当修改编译选项
 
-# CMakeFile
+## CMakeFile
   #### 指向Keil安装目录  
   	set(KEIL_PATH C:/Keil_v5)
   #### 指向ARMCC可执行文件目录  
@@ -35,22 +35,22 @@
   	set(ASM_COMPILE_OPTIONS ...)  
   	set(CMAKE_C_LINK_EXECUTABLE ...)  
 	
-# Command
+## Command
 
-  cmake 
+  cmake  
 	  -DCMAKE_BUILD_TYPE=Release   
 	  -DCMAKE_MAKE_PROGRAM=PATH(mingw32-make)  
 	  -DCMAKE_C_COMPILER=PATH(armcc or armclang)   
 	  -DCMAKE_CXX_COMPILER=PATH(armcc or armclang)   
-	  -G "MinGW Makefiles"   
-	  -S PATH(Project)    
-	  -B PATH(Project\.armcc or Project\.armclang)  
+	  -G "MinGW Makefiles"    
+	  -S PATH(Project)     
+	  -B PATH(Project\.armcc or Project\.armclang)   
 	  
 ![image](https://user-images.githubusercontent.com/15169084/203590871-7065db98-8cc2-4a84-903f-f8d7e7f7899f.png)
 ![image](https://user-images.githubusercontent.com/15169084/203591378-aad1b9f2-2693-4444-b652-5aaceea8c552.png)
 
-  cmake--build PATH(Project\.armcc or Project\.armcc) --target template.axf -- -j 12
-  cmake--build PATH(Project\.armcc or Project\.armclang) --target template.axf -- -j 12
+  cmake--build PATH(Project\.armcc or Project\.armcc) --target template.axf -- -j 12  
+  cmake--build PATH(Project\.armcc or Project\.armclang) --target template.axf -- -j 12  
   
  ![image](https://user-images.githubusercontent.com/15169084/203591960-66b48bcc-dec1-4dd7-8da9-f97714cbe749.png)
  ![image](https://user-images.githubusercontent.com/15169084/203592166-b9288700-6ca8-467a-8cd9-57afdf44edd2.png)
