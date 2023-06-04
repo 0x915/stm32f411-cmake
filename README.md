@@ -1,9 +1,7 @@
-## STM32-CMake
-  Building STM32F4 firmware with cmake (armcc/armclang)
-  使用CMake构建STM32F4系列固件
-
-
-
+## STM32F411 Cmake
+  Building STM32F4 firmware with cmake (armcc/armclang)  
+  使用CMake与Armcc/Armclang构建STM32F411固件
+  
 ## Compile & Link
   编译与链接参数建议基于Keil工程选项修改
 
