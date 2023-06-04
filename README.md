@@ -42,13 +42,13 @@
 	  -DCMAKE_CXX_COMPILER=PATH(armcc or armclang)   
 	  -G "MinGW Makefiles"    
 	  -S PATH(Project)     
-	  -B PATH(Project\.armcc or Project\.armclang)   
+	  -B PATH(Project/.armcc or Project/.armclang)   
 	  
 ![image](https://user-images.githubusercontent.com/15169084/203590871-7065db98-8cc2-4a84-903f-f8d7e7f7899f.png)
 ![image](https://user-images.githubusercontent.com/15169084/203591378-aad1b9f2-2693-4444-b652-5aaceea8c552.png)
 
-  cmake--build PATH(Project\.armcc or Project\.armcc) --target template.axf -- -j 12  
-  cmake--build PATH(Project\.armcc or Project\.armclang) --target template.axf -- -j 12  
+  cmake--build PATH(Project\/.armcc or Project/.armcc) --target template.axf -- -j 12  
+  cmake--build PATH(Project/.armcc or Project/.armclang) --target template.axf -- -j 12  
   
  ![image](https://user-images.githubusercontent.com/15169084/203591960-66b48bcc-dec1-4dd7-8da9-f97714cbe749.png)
  ![image](https://user-images.githubusercontent.com/15169084/203592166-b9288700-6ca8-467a-8cd9-57afdf44edd2.png)
