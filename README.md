@@ -48,7 +48,7 @@ int main(void) {
   编译与链接参数建议基于Keil工程选项调整
 
 ## ARMClang
-  参考文件使用Keil内置编译器，位与 Keil5安装目录\ARM\ARMCLANG\bin
+  参考文件使用Keil内置编译器，位于 Keil5安装目录\ARM\ARMCLANG\bin   
   也可自定义编译器路径，但编译器必须授权才可用
 
 ## CMakeFile
