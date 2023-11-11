@@ -17,7 +17,7 @@ set(ENABLE_BUILD_BIN FALSE)
 #                   CONFIG PATH                  #
 ##################################################
 
-set(KEIL_PATH C:/Keil5)
+set(KEIL_PATH C:/Keil_v5)
 set(ARMCC_PATH ${KEIL_PATH}/ARM/ARMCC/bin)
 set(ARMCLANG_PATH ${KEIL_PATH}/ARM/ARMCLANG/bin)
 
