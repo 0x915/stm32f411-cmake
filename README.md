@@ -1,12 +1,14 @@
 ## STM32F411 Cmake
-  Building STM32F4 firmware with cmake (armcc/armclang)  
-  使用CMake与Armcc/Armclang构建STM32F411固件
+  Building STM32F4 firmware with cmake (armclang)  
+  使用CMake与Armclang构建STM32F411固件
+  Armcc支持已移除，但命令和测试结果仍旧保留，若有需求提issue
   
 ## Compile & Link
-  编译与链接参数建议基于Keil工程选项修改
+  编译与链接参数建议基于Keil工程选项调整
 
-## ARMCC & ARMClang
-  本仓库参考文件使用Keil内置编译器，也可自定义编译器路径，若无Keil需要适当修改编译选项
+## ARMClang
+  参考文件使用Keil内置编译器，位与 Keil5安装目录\ARM\ARMCLANG\bin
+  也可自定义编译器路径，但编译器必须授权才可用
 
 ## CMakeFile
   #### 指向Keil安装目录  
@@ -15,34 +17,37 @@
   	set(ARMCC_PATH ${KEIL_PATH}/ARM/ARMCC/bin)
   #### 指向ARMClang可执行文件目录  
   	set(ARMCLANG_PATH ${KEIL_PATH}/ARM/ARMCLANG/bin)
+  #### 从Keil编译缓存目录(MDK-ARM\ProjectName)获取sct文件并复制到CMakeFile同目录  
+  	set(LINK_SCT_FILE ../templete.sct)  
+   	该文件定义RAM与ROM的启址及大小，相同晶圆不同引脚封装的MCU应该是通用的。
 
-  #### 定义MCU内核  
-  	set(CMAKE_SYSTEM_PROCESSOR Cortex-M4)  
-  #### 定义响应MCU宏  
+  #### 定义响应MCU宏(用于HAL库)   
   	add_compile_definitions(USE_HAL_DRIVER STM32F411xE)  
-  #### 定义头文件搜索路径  
+  #### 定义头文件搜索路径     
   	include_directories(...)  
   #### 定义源文件匹配名称  
   	file(...)  
+  	模板内使用的是懒人写法自动搜索源文件   
+   	但建议实际使用把这堆删了换成具体定义的源文件列表   
+    	因为CubeMX复制到工程的文件可能会影响编译，例如stm32f4xx_hal_msp_template.c以及其他*_template.c   
   
-  #### 从Keil编译缓存目录(MDK-ARM\ProjectName)获取sct文件并复制到CMakeFile同目录  
-  	set(LINK_SCT_FILE ../templete.sct)  
 
-  #### 参考Keil工程选项 C/C++(AC6)|C/C++ & Asm & Linker 修改(ARMCC与ARMClang独立设置)  
-  	set(C_CXX_COMPILE_OPTIONS ...)  
-  	set(ASM_COMPILE_OPTIONS ...)  
-  	set(CMAKE_C_LINK_EXECUTABLE ...)  
+
+  #### 参考Keil工程选项 C/C++(AC6) & Asm & Linker 卡最下方的命令修改
+  	set(C_CXX_COMPILE_OPTIONS ...)   
+  	set(ASM_COMPILE_OPTIONS ...)   
+   	set(LINK_EXECUTABLE "${LINKER} ...")   
 	
 ## Command
 
   cmake  
 	  -DCMAKE_BUILD_TYPE=Release   
 	  -DCMAKE_MAKE_PROGRAM=PATH(mingw32-make)  
-	  -DCMAKE_C_COMPILER=PATH(armcc or armclang)   
-	  -DCMAKE_CXX_COMPILER=PATH(armcc or armclang)   
+	  -DCMAKE_C_COMPILER=PATH(armclang)   
+	  -DCMAKE_CXX_COMPILER=PATH(armclang)   
 	  -G "MinGW Makefiles"    
 	  -S PATH(Project)     
-	  -B PATH(Project/.armcc or Project/.armclang)   
+	  -B PATH(Project/.armclang)   
 	  
 ![image](https://user-images.githubusercontent.com/15169084/203590871-7065db98-8cc2-4a84-903f-f8d7e7f7899f.png)
 ![image](https://user-images.githubusercontent.com/15169084/203591378-aad1b9f2-2693-4444-b652-5aaceea8c552.png)
