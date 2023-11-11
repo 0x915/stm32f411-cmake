@@ -1,6 +1,6 @@
 ## STM32F411 Cmake
   Building STM32F4 firmware with cmake (armclang)  
-  使用CMake与Armclang构建STM32F411固件
+  使用CMake与Armclang构建STM32F411固件   
   Armcc支持已移除，但命令和测试结果仍旧保留，若有需求提issue
 
   测试通过C&C++混合编程的编译及下载运行
