@@ -2,7 +2,48 @@
   Building STM32F4 firmware with cmake (armclang)  
   使用CMake与Armclang构建STM32F411固件
   Armcc支持已移除，但命令和测试结果仍旧保留，若有需求提issue
-  
+
+  测试通过C&C++混合编程的编译及下载运行
+#### _main.cpp
+```
+#include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_gpio.h"
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+int main_cpp(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+int main_cpp(void){
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+	HAL_Delay(1000);
+	HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+ 	HAL_Delay(1000);
+	return 0;
+}
+```
+#### main.c
+```
+....
+extern int main_cpp(void);
+//!已移出CubeMX的匹配字符串!
+int main(void) {
+	HAL_Init();
+	SystemClock_Config();
+	MX_GPIO_Init();
+	MX_USART2_UART_Init();
+	while (1) {
+		main_cpp();
+	}
+}
+....
+```
 ## Compile & Link
   编译与链接参数建议基于Keil工程选项调整
 
@@ -29,7 +70,7 @@
   	file(...)  
   	模板内使用的是懒人写法自动搜索源文件   
    	但建议实际使用把这堆删了换成具体定义的源文件列表   
-    	因为CubeMX复制到工程的文件可能会影响编译，例如stm32f4xx_hal_msp_template.c以及其他*_template.c   
+   	因为CubeMX复制到工程的文件可能会影响编译，例如stm32f4xx_hal_msp_template.c以及其他*_template.c   
   
 
 
