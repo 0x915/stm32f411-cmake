@@ -42,7 +42,8 @@ set(CMAKE_CXX_COMPILER_AR ${ARMCLANG_PATH}/armar)
 set(CMAKE_ASM_COMPILER_AR ${ARMCLANG_PATH}/armar)
 
 set(C_CXX_COMPILE_OPTIONS
-	-xc -std=c11 --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c
+	# -xc -std=c11 
+        --target=arm-arm-none-eabi -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard -c
 	-fno-rtti -funsigned-char -fshort-enums -fshort-wchar -fno-exceptions
 	-O1 -ffunction-sections
 	-Wno-packed -Wno-missing-variable-declarations -Wno-missing-prototypes
